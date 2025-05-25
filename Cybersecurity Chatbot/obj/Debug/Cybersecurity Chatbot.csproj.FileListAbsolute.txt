@@ -14,3 +14,6 @@ C:\Users\Xola\Source\Repos\PROG6221-part-one\Cybersecurity Chatbot\obj\Debug\Cyb
 C:\Users\Xola\Source\Repos\PROG6221-part-one\Cybersecurity Chatbot\obj\Debug\Cybersecurity Chatbot.csproj.CoreCompileInputs.cache
 C:\Users\Xola\Source\Repos\PROG6221-part-one\Cybersecurity Chatbot\obj\Debug\Cybersecurity Chatbot.exe
 C:\Users\Xola\Source\Repos\PROG6221-part-one\Cybersecurity Chatbot\obj\Debug\Cybersecurity Chatbot.pdb
+C:\Users\Xola\source\repos\PROG6221-part-one\Cybersecurity Chatbot\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Xola\source\repos\PROG6221-part-one\Cybersecurity Chatbot\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Xola\source\repos\PROG6221-part-one\Cybersecurity Chatbot\obj\Debug\Cybersec.0B14E185.Up2Date
