@@ -1,1 +1,7 @@
-# PROG6221-part-one
+# PROG6221-POE-PART2
+Project Overview:
+This project is a C# console-based cybersecurity chatbot designed to help users learn about key cybersecurity topics in a fun, engaging way. The chatbot responds to user input using a keyword detection system and provides relevant tips, definitions, and security advice on topics like phishing, malware, strong passwords, VPNs, and more. It features memory for previous topics, so it avoids repeating the same responses, and even suggests related topics to keep the conversation flowing. It starts with a welcome message, optional sound greeting, and prompts the user for their name before beginning the conversation. A colorful menu system also lets users easily see what topics they can ask about.
+
+Usage Instructions & Setup:
+To use the chatbot, open the project in a C# like Visual Studio in this case, make sure the voiceMessage.wav file is in the project directory (optional for the audio greeting), and run the program. The console will ask for your name and then you're free to start chatting. You can ask things like “What is a strong password?”, “Tell me about phishing”, or just type “menu” to view all available topics. Type “exit” or “quit” to end the conversation. The bot will try to match your input with keywords like "router", "VPN", or "2FA", and respond accordingly. If it doesn't recognize your input, it will ask you to rephrase. Setup is simple: no installation needed beyond a standard .NET environment. Just build and run.
+
