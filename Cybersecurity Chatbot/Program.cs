@@ -101,62 +101,199 @@ namespace Cybersecurity_Chatbot
             TypingEffect($"\n Hello, {userName}! I'm here to help you with cybersecurity questions.");
             TypingEffect("You can ask anything about cybersecurity—no need to be formal!");
             TypingEffect("Not sure where to start? Just type 'menu' and pick a topic you’re curious about.\n");
+            TypingEffect("Type 'exit' or 'quit' to end the chat.\n");
 
+            // Map full user questions to specific topics
+            var questionMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+{
+    // Cybersecurity
+    { "what is cybersecurity?", "cybersecurity" },
+    { "why is cybersecurity important?", "cybersecurity" },
+    { "how can i stay safe online?", "cybersecurity" },
+
+    // Malware
+    { "what is malware?", "malware" },
+    { "what are different types of malware?", "malware" },
+    { "how can i remove malware from my device?", "malware" },
+
+    // Firewall
+    { "what is a firewall?", "firewall" },
+    { "how does a firewall protect my computer?", "firewall" },
+    { "should i use a hardware or software firewall?", "firewall" },
+
+    // Antivirus
+    { "what does antivirus software do?", "antivirus" },
+    { "is windows defender enough?", "antivirus" },
+    { "how often should i run antivirus scans?", "antivirus" },
+
+    // Network Security
+    { "what are the basics of network security?", "network security" },
+    { "how do i secure my home wi-fi?", "network security" },
+    { "what is the difference between a public and private network?", "network security" },
+
+    // Passwords
+    { "what makes a strong password?", "password" },
+    { "how often should i change my passwords?", "password" },
+    { "are password managers safe to use?", "password" },
+
+    // 2FA
+    { "what is 2fa and how does it work?", "2fa" },
+    { "is 2fa better than a strong password?", "2fa" },
+    { "what are the best 2fa apps?", "2fa" },
+
+    // Backup
+    { "why should i back up my data?", "backup" },
+    { "what are good backup strategies?", "backup" },
+    { "should i use cloud or physical backups?", "backup" },
+
+    // Safe Online Practices
+    { "what are some safe browsing tips?", "safe online" },
+    { "how can i tell if a website is secure?", "safe online" },
+    { "what should i avoid sharing online?", "safe online" },
+
+    // Phishing
+    { "what is phishing?", "phishing" },
+    { "how do i recognize phishing emails?", "phishing" },
+    { "what should i do if i clicked a phishing link?", "phishing" },
+
+    // VPN
+    { "what is a vpn and how does it work?", "vpn" },
+    { "do i really need a vpn?", "vpn" },
+    { "are free vpns safe?", "vpn" },
+
+    // Encryption
+    { "what is encryption?", "encryption" },
+    { "how is data encrypted?", "encryption" },
+    { "how does encryption protect my privacy?", "encryption" },
+
+    // Identity Theft
+    { "what is identity theft?", "identity theft" },
+    { "how do criminals steal identities?", "identity theft" },
+    { "what should i do if my identity is stolen?", "identity theft" }
+};
+
+
+            // Define the main knowledge base: topics mapped to arrays of related answers
             var knowledgeBase = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
-            {
-                { "cybersecurity", new[] {
-                    "Cybersecurity is all about defending your devices and data from threats like hackers, viruses, and scams. It’s like locking your digital doors.",
-                    "It covers things like secure passwords, network defense, malware protection, and more. Want to explore any of those?"
-                }},
-                { "network security", new[] {
-                    "To protect your router: change the default password, enable WPA3, and update the firmware regularly.",
-                    "Also, turn off remote management and disable WPS. These reduce common attack points on home networks."
-                }},
-                { "phishing", new[] {
-                    "Phishing attacks try to trick you into giving away sensitive info—like fake emails that look real.",
-                    "Always verify links, don't click suspicious attachments, and enable spam filters. Staying alert is your best defense."
-                }},
-                { "malware", new[] {
-                    "Malware is software designed to harm your system. It includes viruses, spyware, ransomware, and more.",
-                    "Use trusted antivirus tools, don’t download from sketchy sites, and keep your software updated."
-                }},
-                { "password", new[] {
-                    "Strong passwords use 12+ characters, upper/lowercase letters, numbers, and symbols.",
-                    "Avoid using names, birthdays, or common words. A password manager helps create and store complex ones."
-                }},
-                { "vpn", new[] {
-                    "A VPN creates a private, secure tunnel for your internet traffic—great for public Wi-Fi.",
-                    "Go with a no-log VPN provider, and enable it whenever you’re on a shared or open network."
-                }},
-                { "firewall", new[] {
-                    "A firewall acts like a gatekeeper—it blocks unwanted or dangerous traffic from reaching your device.",
-                    "Use both software firewalls on devices and hardware firewalls on routers for layered defense."
-                }},
-                { "2fa", new[] {
-                    "Two-factor authentication (2FA) adds another layer beyond your password. Even if someone has your password, they can’t log in."
-                }},
-                { "encryption", new[] {
-                    "Encryption turns your data into unreadable code unless someone has the right key.",
-                    "Use encrypted messaging apps like Signal and encrypt your hard drive for sensitive files."
-                }},
-                { "antivirus", new[] {
-                    "Antivirus software detects and removes harmful programs. Keep it updated and run full scans regularly.",
-                    "Some tools also offer real-time monitoring to stop threats as they happen."
-                }},
-                { "backup", new[] {
-                    "Backups save copies of your files in case something goes wrong—like ransomware or hardware failure.",
-                    "Use cloud backups or external drives, and test your restore process regularly."
-                }},
-                { "safe online", new[] {
-                    "Be cautious about what you click, only browse HTTPS sites, and limit personal info you share.",
-                    "Keep software updated, use strong passwords, and avoid public Wi-Fi without protection."
-                }},
-                { "identity theft", new[] {
-                    "Identity theft happens when someone steals your personal info to impersonate you.",
-                    "Protect yourself by monitoring your credit, shredding documents, and using strong authentication."
-                }},
-            };
+{
+    // CYBERSECURITY
+    { "cybersecurity", new[]
+        {
+            "Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks.",
+            "Cybersecurity is important because it helps prevent data breaches, identity theft, and disruptions to critical systems.",
+            "To stay safe online, keep software updated, use strong passwords, enable 2FA, and avoid suspicious links."
+        }
+    },
 
+    // MALWARE
+    { "malware", new[]
+        {
+            "Malware is software designed to harm, exploit, or otherwise compromise a computer or network.",
+            "Types of malware include viruses, worms, trojans, ransomware, spyware, and adware.",
+            "To remove malware, use a trusted antivirus or anti-malware tool, run a full system scan, and follow removal instructions."
+        }
+    },
+
+    // FIREWALL
+    { "firewall", new[]
+        {
+            "A firewall is a security system that monitors and controls incoming and outgoing network traffic based on security rules.",
+            "A firewall protects your computer by blocking unauthorized access while permitting outward communication.",
+            "Both have value: hardware firewalls are better for networks, while software firewalls protect individual devices."
+        }
+    },
+
+    // ANTIVIRUS
+    { "antivirus", new[]
+        {
+            "Antivirus software detects, prevents, and removes malicious software from your devices.",
+            "Windows Defender provides solid basic protection, but advanced users or businesses may need additional features.",
+            "You should run antivirus scans at least once a week or set up real-time protection for continuous monitoring."
+        }
+    },
+
+    // NETWORK SECURITY
+    { "network security", new[]
+        {
+            "Network security involves protecting a network’s integrity, confidentiality, and accessibility from attacks.",
+            "To secure your home Wi-Fi, change default credentials, use WPA3 encryption, and hide your SSID.",
+            "Public networks are open and less secure, while private networks are secured with passwords and encryption."
+        }
+    },
+
+    // PASSWORD
+    { "password", new[]
+        {
+            "A strong password uses a mix of uppercase, lowercase, numbers, and symbols and avoids common words.",
+            "It's recommended to change passwords every 3–6 months or immediately after a breach.",
+            "Yes, password managers are generally safe and help generate and store complex passwords securely."
+        }
+    },
+
+    // 2FA
+    { "2fa", new[]
+        {
+            "2FA (Two-Factor Authentication) adds a second verification step—like a code sent to your phone—after entering your password.",
+            "Yes, 2FA is more secure than a strong password alone, especially against phishing and brute-force attacks.",
+            "Popular 2FA apps include Google Authenticator, Authy, and Microsoft Authenticator."
+        }
+    },
+
+    // BACKUP
+    { "backup", new[]
+        {
+            "Backing up data ensures you can recover files after device failure, malware, or accidental deletion.",
+            "Good backup strategies include the 3-2-1 rule: 3 copies of data, on 2 types of storage, with 1 off-site.",
+            "Cloud backups offer convenience and remote access, while physical backups provide fast recovery without internet."
+        }
+    },
+
+    // SAFE ONLINE
+    { "safe online", new[]
+        {
+            "Use updated browsers, block pop-ups, avoid suspicious links, and don’t download files from untrusted sites.",
+            "A secure website uses HTTPS, shows a padlock icon in the address bar, and has a valid certificate.",
+            "Avoid sharing personal info like full name, address, SSN, banking details, and login credentials online."
+        }
+    },
+
+    // PHISHING
+    { "phishing", new[]
+        {
+            "Phishing is a scam where attackers trick you into giving up personal info by pretending to be trustworthy.",
+            "Signs of phishing emails include urgent language, suspicious links, unfamiliar senders, and grammar mistakes.",
+            "If you clicked a phishing link, disconnect from the internet, run antivirus, and change any exposed passwords."
+        }
+    },
+
+    // VPN
+    { "vpn", new[]
+        {
+            "A VPN encrypts your internet traffic and routes it through a secure server, hiding your IP and location.",
+            "Yes, a VPN enhances privacy and security, especially on public Wi-Fi or when accessing restricted content.",
+            "Free VPNs can compromise privacy and limit speed—use a reputable paid provider for better safety."
+        }
+    },
+
+    // ENCRYPTION
+    { "encryption", new[]
+        {
+            "Encryption converts your data into unreadable code to protect it from unauthorized access.",
+            "Data is encrypted using algorithms and keys, such as AES, to scramble information before transmission or storage.",
+            "Encryption ensures that even if data is intercepted, it can't be read without the decryption key."
+        }
+    },
+
+    // IDENTITY THEFT
+    { "identity theft", new[]
+        {
+            "Identity theft is when someone uses your personal info—like SSN or bank details—without your permission.",
+            "Criminals steal identities through phishing, data breaches, dumpster diving, or stealing physical documents.",
+            "If your identity is stolen, report it to your bank, credit bureaus, and local authorities, and monitor your credit."
+        }
+    },
+};
+            // Suggest follow-up topics based on the current topic
             var followUps = new Dictionary<string, string[]>
             {
                 { "malware", new[] { "antivirus", "backup" } },
@@ -165,6 +302,7 @@ namespace Cybersecurity_Chatbot
                 { "vpn", new[] { "encryption", "network security" } },
             };
 
+            // Map keywords in user input to relevant topics
             var keywordMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
                 { "router", "network security" },
@@ -191,6 +329,8 @@ namespace Cybersecurity_Chatbot
                 { "cyber attack", "cybersecurity" },
             };
 
+
+            // Show main help topics
             DisplayMenu();
 
             while (true)
@@ -206,19 +346,22 @@ namespace Cybersecurity_Chatbot
                     continue;
                 }
 
+                // Exit condition
                 if (userInput == "exit" || userInput == "quit")
                 {
                     TypingEffect("Chatbot: Goodbye! Stay secure out there ;) ");
                     break;
                 }
 
+                // Show menu again
                 if (userInput == "menu")
                 {
                     DisplayMenu();
                     continue;
                 }
 
-                string matchedTopic = MatchTopic(userInput, knowledgeBase, keywordMap);
+                string matchedTopic = MatchTopic(userInput, knowledgeBase, keywordMap, questionMap);
+
 
                 if (knowledgeBase.ContainsKey(matchedTopic))
                 {
@@ -260,26 +403,37 @@ namespace Cybersecurity_Chatbot
             }
         }
 
-        static string MatchTopic(string userInput, Dictionary<string, string[]> knowledgeBase, Dictionary<string, string> keywordMap)
+        static string MatchTopic(string userInput, Dictionary<string, string[]> knowledgeBase, Dictionary<string, string> keywordMap, Dictionary<string, string> questionMap)
         {
+            string normalized = userInput.Trim().ToLower();
+
+            // 1. Exact match for known questions
+            if (questionMap.ContainsKey(normalized))
+            {
+                return questionMap[normalized];
+            }
+
+            // 2. Keyword-based topic mapping
             foreach (var keyword in keywordMap)
             {
-                if (userInput.Contains(keyword.Key))
+                if (normalized.Contains(keyword.Key))
                 {
                     return keyword.Value;
                 }
             }
 
+            // 3. Topic name direct match
             foreach (var topic in knowledgeBase.Keys)
             {
-                if (userInput.Contains(topic.ToLower()))
+                if (normalized.Contains(topic.ToLower()))
                 {
                     return topic;
                 }
             }
 
-            return "cybersecurity";
+            return "cybersecurity"; // Default fallback
         }
+
 
         static void Logo()
         {
